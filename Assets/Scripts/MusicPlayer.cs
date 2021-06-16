@@ -7,6 +7,7 @@ public class MusicPlayer : MonoBehaviour
     public JsonReader jsonReader;
     string currentRecord;
     bool isMusicStopped = true;
+    bool isMusicPaused = true;
     int SongIndex=0;
 
     void Start()
@@ -18,6 +19,7 @@ public class MusicPlayer : MonoBehaviour
     {
         PlayButton();
         StopButton();
+        PauseButton();
         NextButton();
         PreviousButton();
     }
@@ -26,10 +28,11 @@ public class MusicPlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            if (isMusicStopped)
+            if (isMusicStopped || isMusicPaused)
             {
                 FindObjectOfType<AudioManager>().Play(currentRecord);
                 isMusicStopped = false;
+                isMusicPaused = false;
             }
         }
     }
@@ -45,6 +48,18 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    void PauseButton()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (!isMusicPaused)
+            {
+                isMusicPaused = true;
+                FindObjectOfType<AudioManager>().Pause(currentRecord);
+            }
+        }
+    }
+
 
     void NextButton()
     {
@@ -56,6 +71,7 @@ public class MusicPlayer : MonoBehaviour
                 SongIndex = 0;
             }
             FindObjectOfType<AudioManager>().Stop(currentRecord);
+            isMusicPaused = false;
             currentRecord = jsonReader.mySongList.song[SongIndex].name;
 
             if (!isMusicStopped)
@@ -76,6 +92,7 @@ public class MusicPlayer : MonoBehaviour
                 SongIndex = jsonReader.mySongList.song.Length - 1;
             }
             FindObjectOfType<AudioManager>().Stop(currentRecord);
+            isMusicPaused = false;
             currentRecord = jsonReader.mySongList.song[SongIndex].name;
 
             if (!isMusicStopped)

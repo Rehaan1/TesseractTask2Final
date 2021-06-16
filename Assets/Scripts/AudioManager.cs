@@ -45,4 +45,15 @@ public class AudioManager : MonoBehaviour
         }
         s.source.Stop();
     }
+
+    public void Pause(string name) //Stops Playing respective song
+    {
+        Sound s = sounds.Find(sound => sound.name == name);
+        if(s == null)
+        {
+            Debug.LogWarning("Song: "+name+" Not Found");
+            return;
+        }
+        s.source.Pause();
+    }
 }
