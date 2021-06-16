@@ -276,9 +276,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 961658786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21f3b37a69d01e24a88698d525e45991, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fba36f9a2811d84c8fc585c00764f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jsonReader: {fileID: 954007264}
 --- !u!4 &961658788
 Transform:
   m_ObjectHideFlags: 0
