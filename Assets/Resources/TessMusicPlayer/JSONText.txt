@@ -3,12 +3,12 @@
         {
             "name" : "AA Game Music",
             "artist" : "GameDev.tv",
-            "filename" : "AAMusic.mp3"
+            "filename" : "AAMusic"
         },
         {
             "name" : "No Woman No Cry",
             "artist" : "BobMarley",
-            "filename" : "NoWomanNoCry.mp3"
+            "filename" : "NoWomanNoCry"
         }
     ]
 }

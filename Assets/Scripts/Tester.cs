@@ -18,8 +18,13 @@ public class Tester : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.K))
         {
             FindObjectOfType<AudioManager>().Stop(currentRecord);
-            currentRecord = "NoWoman";
-            FindObjectOfType<AudioManager>().Play("NoWoman");
+            currentRecord = "NoWomanNoCry";
+            FindObjectOfType<AudioManager>().Play("NoWomanNoCry");
+        }
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            FindObjectOfType<AudioManager>().Stop(currentRecord);
+            currentRecord = "";
         }
         
     }

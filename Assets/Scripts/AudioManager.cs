@@ -1,28 +1,35 @@
-﻿using UnityEngine.Audio;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    public List<Sound> sounds = new List<Sound>();
+    public JsonReader jsonReader;
     
-    
-    void Awake()
+    void Start()
     {
-        foreach(Sound s in sounds)
+        foreach(JsonReader.Song s in jsonReader.mySongList.song)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            Sound sound = new Sound();
+            sound.filename = s.filename;
+            sound.name = s.name;
+            sound.artist = s.artist;
+            sound.source = gameObject.AddComponent<AudioSource>();
+            sound.source.clip = Resources.Load("TessMusicPlayer/"+s.filename) as AudioClip;
+            sound.source.volume = 1;
+            sounds.Add(sound);
         }
     }
 
     public void Play(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = sounds.Find(sound => sound.filename == name);
         if(s == null)
         {
-            Debug.LogWarning("Soung: "+name+" Not Found");
+            Debug.LogWarning("Song: "+name+" Not Found");
             return;
         }
         s.source.Play();
@@ -30,10 +37,10 @@ public class AudioManager : MonoBehaviour
 
     public void Stop(string name)
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = sounds.Find(sound => sound.filename == name);
         if(s == null)
         {
-            Debug.LogWarning("Soung: "+name+" Not Found");
+            Debug.LogWarning("Song: "+name+" Not Found");
             return;
         }
         s.source.Stop();

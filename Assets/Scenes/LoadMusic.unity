@@ -204,6 +204,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &954007263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 954007265}
+  - component: {fileID: 954007264}
+  m_Layer: 0
+  m_Name: Reader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &954007264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954007263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56db2461b9e4bb84390d409cd9b3aec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  songDataJSON: {fileID: 4900000, guid: 1f765966c949e884fa6c95205bdd469e, type: 3}
+  mySongList:
+    song: []
+--- !u!4 &954007265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954007263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &961658786
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,15 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f44f4790a13b3543bcce6167e8075c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: AAMusic
-    clip: {fileID: 8300000, guid: 63d06676564be644db1d6a678624f0b5, type: 3}
-    volume: 1
-    source: {fileID: 0}
-  - name: NoWoman
-    clip: {fileID: 8300000, guid: 10e917113a48fb842878b2368882d10b, type: 3}
-    volume: 1
-    source: {fileID: 0}
+  sounds: []
+  jsonReader: {fileID: 954007264}
 --- !u!4 &1214978020
 Transform:
   m_ObjectHideFlags: 0
