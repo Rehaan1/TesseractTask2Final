@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
-    public JsonReader jsonReader;
-    string currentRecord;
+    [SerializeField] JsonReader jsonReader;
+    [SerializeField] RecordRotator recordRotator1;
+    [SerializeField] RecordRotator recordRotator2;
+    public string currentRecord;
+    public string currentArtist;
     bool isMusicStopped = true;
     bool isMusicPaused = true;
     int SongIndex=0;
@@ -13,93 +16,93 @@ public class MusicPlayer : MonoBehaviour
     void Start()
     {
         currentRecord = jsonReader.mySongList.song[SongIndex].name;
+        currentArtist = jsonReader.mySongList.song[SongIndex].artist;
     }
 
     void Update()
     {
-        PlayButton();
-        StopButton();
-        PauseButton();
-        NextButton();
-        PreviousButton();
+        if (Input.GetKeyDown(KeyCode.I))
+            PlayButton();
+        if (Input.GetKeyDown(KeyCode.S))
+            StopButton();
+        if (Input.GetKeyDown(KeyCode.D))
+            PauseButton();
+        if(Input.GetKeyDown(KeyCode.N))
+            NextButton();
+        if(Input.GetKeyDown(KeyCode.P))
+            PreviousButton();
     }
 
-    void PlayButton()
+    public void PlayButton()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
             if (isMusicStopped || isMusicPaused)
             {
                 FindObjectOfType<AudioManager>().Play(currentRecord);
+                recordRotator1.isRotating = true;
+                recordRotator2.isRotating = true;
                 isMusicStopped = false;
                 isMusicPaused = false;
             }
-        }
     }
-    void StopButton()
+    public void StopButton()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
             if (!isMusicStopped)
             {
                 isMusicStopped = true;
+                recordRotator1.isRotating = false;
+                recordRotator2.isRotating = false;
                 FindObjectOfType<AudioManager>().Stop(currentRecord);
             }
-        }
     }
 
-    void PauseButton()
+    public void PauseButton()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
             if (!isMusicPaused)
             {
                 isMusicPaused = true;
+                recordRotator1.isRotating = false;
+                recordRotator2.isRotating = false;
                 FindObjectOfType<AudioManager>().Pause(currentRecord);
             }
-        }
     }
 
 
-    void NextButton()
+    public void NextButton()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
             SongIndex++;
             if (SongIndex == jsonReader.mySongList.song.Length)
             {
                 SongIndex = 0;
             }
             FindObjectOfType<AudioManager>().Stop(currentRecord);
-            isMusicPaused = false;
+            
             currentRecord = jsonReader.mySongList.song[SongIndex].name;
+            currentArtist = jsonReader.mySongList.song[SongIndex].artist;
 
-            if (!isMusicStopped)
+            if (isMusicStopped || isMusicPaused)
             {
-                FindObjectOfType<AudioManager>().Play(currentRecord);
+                return;
             }
-
-        }
+            FindObjectOfType<AudioManager>().Play(currentRecord);
     }
 
-    void PreviousButton()
+    public void PreviousButton()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
             SongIndex--;
             if (SongIndex < 0)
             {
                 SongIndex = jsonReader.mySongList.song.Length - 1;
             }
             FindObjectOfType<AudioManager>().Stop(currentRecord);
-            isMusicPaused = false;
+            
             currentRecord = jsonReader.mySongList.song[SongIndex].name;
+            currentArtist = jsonReader.mySongList.song[SongIndex].artist;
 
-            if (!isMusicStopped)
+            if (isMusicStopped || isMusicPaused)
             {
-                FindObjectOfType<AudioManager>().Play(currentRecord);
+                return;
             }
-        }
+            FindObjectOfType<AudioManager>().Play(currentRecord);
     }
     
 }
