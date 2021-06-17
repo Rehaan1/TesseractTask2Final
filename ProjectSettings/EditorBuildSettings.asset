@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LoadPrefab.unity
+    path: Assets/Scenes/FinalScene.unity
     guid: 956c37c1ef4c9f0408e26cb7d86f9df1
   m_configObjects: {}

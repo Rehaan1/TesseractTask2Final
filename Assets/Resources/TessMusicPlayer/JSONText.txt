@@ -9,6 +9,12 @@
             "name" : "No Woman No Cry",
             "artist" : "BobMarley",
             "filename" : "NoWomanNoCry"
+        },
+        {
+            "name" : "She's Like Texas",
+            "artist" : "Jason ",
+            "filename" : "ShesLikeTexas"
         }
+        
     ]
 }
