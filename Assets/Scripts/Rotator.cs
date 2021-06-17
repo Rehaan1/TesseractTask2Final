@@ -20,13 +20,13 @@ public class Rotator : MonoBehaviour
     void Update() 
     {
              
-        if(Input.GetKeyDown (KeyCode.Space)) 
+        if(Input.GetKeyDown (KeyCode.N)) 
         {     
             spincount = 0; 
             isAntiClockwiseRotation = true;  
         }
 
-        if(Input.GetKeyDown (KeyCode.L)) 
+        if(Input.GetKeyDown (KeyCode.P)) 
         {     
             spincount = 0; 
             isClockwiseRotation = true;  
